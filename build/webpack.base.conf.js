@@ -50,6 +50,10 @@ module.exports = {
         }
       },
       {
+        test: /\.(scss)$/,
+        loader: 'sass-loader'
+      },
+      {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {
@@ -74,7 +78,7 @@ module.exports = {
     //让前后端http请求都转到node的3000端口，而不是前端的8080端口
     proxy: {
       '/api': {
-        target: 'http://localhost:9000/api/',
+        target: 'http://localhost:9001/api/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
