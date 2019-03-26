@@ -18,7 +18,7 @@
         },
         methods: {
             login() {
-                Vue.http.get('/api/login/getAccount').then((response) => {
+                Vue.http.post('/api/login/createAccount', {account: this.account, password: this.password}).then((response) => {
                     if (response.body.code === 200) {
                         this.$router.push('helloworld')
                     } else {

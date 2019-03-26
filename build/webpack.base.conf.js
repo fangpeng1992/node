@@ -74,24 +74,9 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-
-    //让前后端http请求都转到node的3000端口，而不是前端的8080端口
-    proxy: {
-      '/api': {
-        target: 'http://localhost:9001/api/',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      }
-    }
   },
   node: {
-    // prevent webpack from injecting useless setImmediate polyfill because Vue
-    // source contains it (although only uses it if it's native).
     setImmediate: false,
-    // prevent webpack from injecting mocks to Node native modules
-    // that does not make sense for the client
     dgram: 'empty',
     fs: 'empty',
     net: 'empty',

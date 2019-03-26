@@ -9,7 +9,16 @@ import 'iview/dist/styles/iview.css'
 Vue.config.productionTip = false
 
 Vue.use(iView);
-
+Vue.http.interceptors.push((request, next) => {
+  request.headers.set('Pragma', 'no-cache');
+  next((response) => {
+    if (request.url === '/api/login/createAccount') {
+      if (response.body.code !== 200) {
+        router.replace('/workbench');
+      }
+    }
+  });
+});
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') {
     next();
